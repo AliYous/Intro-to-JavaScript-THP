@@ -9,7 +9,7 @@ function acnebot() {
         console.log(message.length);
         if (isAQuestion(message)) {
             console.log("Ouais Ouais .... ");
-        } else if (isUpperCase(message)) {
+        } else if (isUpperCase(message) && !isEmpty(message)) {
             console.log("Pwa, calme toi...");
         } else if (includesFortnite(message)) {
             console.log("on s' fait une partie soum-soum ?");
