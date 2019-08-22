@@ -21,6 +21,7 @@ function perform(books) {
     mostRentedBooks(books);
 
     console.log("Quel est le livre le moins emprunté ?");
+    leastRentedBooks(books);
 
     console.log("Trouve le livre avec l'ID: 873495 ;");
 
@@ -42,19 +43,16 @@ function allBooksRented(books) {
 }
 
 function mostRentedBooks(books) {
-    let mostRented = books[0];
     let rented = books[0].rented;
-
-
-    for (let i = 1; i < books.length; i++) {
-        console.log(mostRented)
-
-        if (books[i].rented >= rented) {
-            mostRented = books[i];
-        }
-        rented = books[i].rented;
-    }
-    console.log(mostRented);
+    let mostRentedValue = Math.max.apply(Math, books.map(function (o) { return o.rented; }))
+    let mostRentedBook = books.find(book => book.rented === mostRentedValue);
+    console.log(mostRentedBook);
 }
 
-Math.max.apply(Math, array.map(function (o) { return o.y; }))
+function leastRentedBooks(books) {
+    let rented = books[0].rented;
+    let leastRentedValue = Math.min.apply(Math, books.map(function (o) { return o.rented; }))
+    let leastRentedBook = books.find(book => book.rented === leastRentedValue);
+    console.log(leastRentedBook);
+}
+
