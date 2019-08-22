@@ -24,10 +24,15 @@ function perform(books) {
     leastRentedBooks(books);
 
     console.log("Trouve le livre avec l'ID: 873495 ;");
+    id = 873495;
+    findBookByID(books, id);
 
     console.log("Supprime le livre avec l'ID: 133712 ;");
+    id = 133712;
+    deleteBookByID(books, id);
 
     console.log("Trie les livres par ordre alphabétique (sans celui avec l'ID 133712 car il est supprimé).");
+    sortEntrepreneurs(books)
 }
 
 perform(books);
@@ -55,4 +60,40 @@ function leastRentedBooks(books) {
     let leastRentedBook = books.find(book => book.rented === leastRentedValue);
     console.log(leastRentedBook);
 }
+
+function findBookByID(books, id) {
+    let book = books.find(book => book.id === id);
+    console.log(book);
+}
+
+function deleteBookByID(books, id) {
+    let book = books.find(book => book.id === id);
+    for (var i = books.length - 1; i >= 0; i--) {
+        if (books[i].id == id) {
+            books.splice(i, 1);
+            console.log("Le livre ayant pour ID: " + id + " a été supprimé")
+        } else if (i == 0) {
+            console.log("Aucun livre avec l'ID: ${id} n'a été trouvé dans la liste")
+        }
+    }
+}
+
+function sortEntrepreneurs(books) {
+    console.log(books.sort(compare));
+}
+
+function compare(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const nameA = a.title.toUpperCase();
+    const nameB = b.title.toUpperCase();
+
+    let comparison = 0;
+    if (nameA > nameB) {
+        comparison = 1;
+    } else if (nameA < nameB) {
+        comparison = -1;
+    }
+    return comparison;
+}
+
 
